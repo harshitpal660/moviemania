@@ -1,0 +1,56 @@
+.movies {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  height: 500px;
+  width: 250px;
+  margin: 20px;
+  /* justify-content: space-around; */
+}
+
+.image_wrapper {
+  overflow: hidden;
+}
+.image_wrapper img {
+  height: 100%;
+  width: 100%;
+}
+
+.buttons {
+  position: relative; /* Use relative positioning */
+  display: flex;
+  justify-content: space-around; /* Center horizontally */
+  align-items: center; /* Center vertically */
+ /* Take up the full height of the card */
+  opacity: 0; /* Initially hide the play button */
+  transition: opacity 1s ease-in-out; /* Add a transition effect*/
+  background-color: rgb(69,69,69);
+}
+.card:hover .buttons {
+  opacity: 1; /* Show the play button on hover */
+}
+
+.icons {
+  height: 30px;
+  width: 30px;
+}
+
+#play{
+  height: 50px;
+  width: 50px;
+}
+
+#loadmore{
+  margin: auto;
+  width: fit-content;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
