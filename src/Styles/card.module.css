@@ -1,0 +1,71 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  height: 500px;
+  width: 250px;
+  margin: 0px;
+  /* justify-content: space-around; */
+}
+
+.cardWrapper {
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
+}
+.image_wrapper {
+  overflow: hidden;
+}
+.image_wrapper img {
+  height: 100%;
+  width: 100%;
+}
+
+.buttons {
+  position: relative; 
+  top:85%;
+  transform: translate(0,-100%);
+  display: flex;
+ 
+  justify-content: space-around; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  /* Take up the full height of the card */
+  opacity: 0; /* Initially hide the play button */
+  transition: opacity 1s ease-in-out; /* Add a transition effect*/
+  background-color: rgb(69, 69, 69);
+}
+.card:hover .buttons {
+  opacity: 1; /* Show the play button on hover */
+}
+
+.icons {
+  height: 30px;
+  width: 30px;
+}
+
+#play {
+  height: 50px;
+  width: 50px;
+}
+
+
+/* front face of the card */
+.front {
+  position: absolute;
+  height: 375px;
+  width: 250px;
+  backface-visibility: hidden;
+}
+/* back face of the card */
+.back {
+  position: absolute;
+  backface-visibility: hidden;
+  height: 375px;
+  width: 250px;
+  background-color: #97a3b2;
+  transform: rotateY(180deg);
+}
+
+/* this style will apply dynamically to the card whose flip icon is clickes */
+.flipCard {
+  transform: rotateY(180deg);
+}

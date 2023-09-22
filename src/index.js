@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./Store/store";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+// import SwapCardAnimation from "./Components/swapDemo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +15,7 @@ root.render(
     <Provider store={store}>
       <Toaster/>
       <App />
+      {/* <SwapCardAnimation/> */}
     </Provider>
   </Router>
     

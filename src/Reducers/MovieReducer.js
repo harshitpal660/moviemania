@@ -11,6 +11,7 @@ const initialState = {
   movies: [],
   searchQuery: "",
   pages: 1,
+  flippedCards: [],
 };
 
 export const favouriteSlice = createSlice({
@@ -84,6 +85,20 @@ export const pageUpdateSlice = createSlice({
   },
 });
 
+export const flippedCardsSlice = createSlice({
+  name: "isFlipped",
+  initialState: initialState.flippedCards,
+  reducers: {
+    getFlippedCards: (state, action) => {
+      // return action.payload;
+      console.log(state.includes(action.payload));
+      const flippedCards = state.includes(action.payload) ? state.filter(id=> id !== action.payload) : [...state,action.payload];
+      return flippedCards;
+    },
+  },
+});
+
+
 export const { addToFav, removeFromFav } = favouriteSlice.actions;
 
 export const { loadMovie } = moviesSlice.actions;
@@ -91,5 +106,7 @@ export const { loadMovie } = moviesSlice.actions;
 export const { setSearchQuery } = searchQuerySlice.actions;
 
 export const { updatePage } = pageUpdateSlice.actions;
+
+export const { getFlippedCards } = flippedCardsSlice.actions;
 
 // export default favouriteSlice.reducer;
