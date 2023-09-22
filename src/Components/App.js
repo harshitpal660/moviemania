@@ -1,17 +1,21 @@
-import Movie from "./Movie";
+import {Home} from "../Pages/Home";
+import { Favourite } from "../Pages/Favourite";
 import Navbar from "./Navbar";
-import React, { useState } from 'react';
+import React from 'react';
+
+import { Routes ,Route } from 'react-router-dom';
+
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState('');
+ 
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
   return (
     <div className="App">
-      <Navbar searchQuery={searchQuery} handleSearchChange={handleSearchChange}/>
-      <Movie searchQuery={searchQuery}/>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/favourite' element={<Favourite/>} />
+      </Routes>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export const getTrailerURL = (movieId) => {
 export const fetchData = async (url) => {
   const response = await fetch(url)
     .then((response) => {
-      console.log(response); // Log the response here
+      // console.log(response); // Log the response here
       return response.json();
     })
     .then((response) => {
