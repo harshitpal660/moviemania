@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const localStorageKey = "myFavourites";
-// localStorage.removeItem('myEmptyArray')
-// localStorage.setItem(localStorageKey, JSON.stringify({}));
+// localStorage.removeItem(localStorageKey)
+if(!localStorage.getItem(localStorageKey)){
+  localStorage.setItem(localStorageKey, JSON.stringify({}));
+}
+
 const initialState = {
   favourites: JSON.parse(localStorage.getItem(localStorageKey)) || {},
   movies: [],
@@ -16,7 +19,7 @@ export const favouriteSlice = createSlice({
   reducers: {
     addToFav: (state, action) => {
       const payloadClone = { ...action.payload }; // Create a shallow clone
-      payloadClone.addbuttonActivated = true; // Add the property to the clone
+      payloadClone.addButtonActivated = true; // Add the property to the clone
       action.payload = payloadClone; // Assign the modified clone back to the action
       state[action.payload.id] = action.payload;
       localStorage.setItem(localStorageKey, JSON.stringify(state));

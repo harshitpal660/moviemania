@@ -111,7 +111,6 @@ function Movie() {
               ></img>
               <img src={info} alt="info" className={styles.icons}></img>
             </div>
-            {/* Render other movie details here */}
           </div>
         ))}
       </div>
