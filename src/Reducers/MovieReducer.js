@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { isMobile } from 'react-device-detect';
 const localStorageKey = "myFavourites";
 // localStorage.removeItem(localStorageKey)
 if(!localStorage.getItem(localStorageKey)){
@@ -12,6 +12,7 @@ const initialState = {
   searchQuery: "",
   pages: 1,
   flippedCards: [],
+  isMobile: isMobile,
 };
 
 export const favouriteSlice = createSlice({
@@ -91,9 +92,18 @@ export const flippedCardsSlice = createSlice({
   reducers: {
     getFlippedCards: (state, action) => {
       // return action.payload;
-      console.log(state.includes(action.payload));
       const flippedCards = state.includes(action.payload) ? state.filter(id=> id !== action.payload) : [...state,action.payload];
       return flippedCards;
+    },
+  },
+});
+
+export const detectDeviceSlice = createSlice({
+  name: "deviceChanged",
+  initialState: initialState.isMobile,
+  reducers: {
+    deviceChanged: (state, action) => {
+      return action.payload;
     },
   },
 });
@@ -108,5 +118,7 @@ export const { setSearchQuery } = searchQuerySlice.actions;
 export const { updatePage } = pageUpdateSlice.actions;
 
 export const { getFlippedCards } = flippedCardsSlice.actions;
+
+export const { deviceChanged } = detectDeviceSlice.actions;
 
 // export default favouriteSlice.reducer;

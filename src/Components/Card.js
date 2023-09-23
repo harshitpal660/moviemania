@@ -1,5 +1,9 @@
-import { addToFav, removeFromFav } from "../Reducers/MovieReducer";
-import { getFlippedCards } from "../Reducers/MovieReducer";
+import {
+  addToFav,
+  removeFromFav,
+  getFlippedCards,
+  deviceChanged,
+} from "../Reducers/MovieReducer";
 
 import play from "../Images/play.png";
 import favorite from "../Images/favorite.png";
@@ -8,18 +12,19 @@ import favorite2 from "../Images/favorite2.png";
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { isMobile } from "react-device-detect";
 
 import toast from "react-hot-toast";
 import styles from "../Styles/card.module.css";
+import { useEffect } from "react";
 
 export const Card = (movie) => {
   movie = movie.movie;
   const dispatch = useDispatch();
   const flippedCards = useSelector((state) => state.flippedCards);
   const isFlipped = flippedCards.includes(movie.id);
-
-  console.log(flippedCards, " ", isFlipped);
-
+  // const isMobile = useSelector((state)=> state.isMobile);
+  console.log(isMobile);
   const handleplayTrailer = (id) => {
     console.log(id);
   };
@@ -41,12 +46,15 @@ export const Card = (movie) => {
   const handleSwap = (id) => {
     dispatch(getFlippedCards(id));
   };
+
   return (
     <div key={movie.id} className={styles.card}>
       <div className={styles.fixed_height_div}>
         <h3>{movie.title}</h3>
       </div>
-      <div className={`${styles.cardWrapper} ${isFlipped ? styles.flipCard : ""}`}>
+      <div
+        className={`${styles.cardWrapper} ${isFlipped ? styles.flipCard : ""}`}
+      >
         <div className={`${styles.image_wrapper} ${styles.front}`}>
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -56,7 +64,7 @@ export const Card = (movie) => {
         <div className={styles.back}>back</div>
       </div>
 
-      <div className={styles.buttons}>
+      <div className={`${isMobile ? styles.mobileButtons : styles.buttons}`}>
         {movie.addButtonActivated ? (
           <img
             src={favorite2}

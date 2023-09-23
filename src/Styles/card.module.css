@@ -37,6 +37,17 @@
   opacity: 1; /* Show the play button on hover */
 }
 
+.mobileButtons{
+  position: relative; 
+  top:85%;
+  transform: translate(0,-100%);
+  display: flex;
+ 
+  justify-content: space-around; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  /* Take up the full height of the card */
+  background-color: rgb(69, 69, 69);
+}
 .icons {
   height: 30px;
   width: 30px;
