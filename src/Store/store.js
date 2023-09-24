@@ -1,12 +1,15 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
-import { favouriteSlice, moviesSlice, searchQuerySlice, pageUpdateSlice,flippedCardsSlice,detectDeviceSlice } from "../Reducers/MovieReducer";
+import { favouriteSlice, moviesSlice, searchQuerySlice, pageUpdateSlice,flippedCardsSlice, playButtonClickedSlice, TrailersSlice, modalWarningSlice,showAdultSlice } from "../Reducers/MovieReducer";
 const rootReducer = combineReducers({
     favourites: favouriteSlice.reducer,
     movies: moviesSlice.reducer,
     searchQuery: searchQuerySlice.reducer,
     pages: pageUpdateSlice.reducer,
     flippedCards:flippedCardsSlice.reducer,
-    isMobile:detectDeviceSlice.reducer,
+    playButtonClicked:playButtonClickedSlice.reducer,
+    allTrailers: TrailersSlice.reducer,
+    modalWarning: modalWarningSlice.reducer,
+    showAdult: showAdultSlice.reducer
 });
 
 export const store = configureStore({

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { isMobile } from 'react-device-detect';
+
 const localStorageKey = "myFavourites";
 // localStorage.removeItem(localStorageKey)
 if(!localStorage.getItem(localStorageKey)){
@@ -12,7 +12,10 @@ const initialState = {
   searchQuery: "",
   pages: 1,
   flippedCards: [],
-  isMobile: isMobile,
+  playButtonClicked: 1,
+  allTrailers: [],
+  modalWarning: true,
+  showAdult: null,
 };
 
 export const favouriteSlice = createSlice({
@@ -98,16 +101,47 @@ export const flippedCardsSlice = createSlice({
   },
 });
 
-export const detectDeviceSlice = createSlice({
-  name: "deviceChanged",
-  initialState: initialState.isMobile,
+export const playButtonClickedSlice = createSlice({
+  name: "pageUpdate",
+  initialState: initialState.pages,
   reducers: {
-    deviceChanged: (state, action) => {
+    TogglePlayButton: (state, action) => {
+      
       return action.payload;
     },
   },
 });
 
+export const TrailersSlice = createSlice({
+  name: "TraliersSlice",
+  initialState: initialState.allTrailers,
+  reducers: {
+    setTrailers: (state, action) => {
+      
+      return action.payload;
+    },
+  },
+});
+
+export const modalWarningSlice = createSlice({
+  name: "modalWarning",
+  initialState: initialState.modalWarning,
+  reducers: {
+    warningActions: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
+export const showAdultSlice = createSlice({
+  name: "showAdult",
+  initialState: initialState.showAdult,
+  reducers: {
+    isAdult: (state, action) => {
+      return action.payload;
+    },
+  },
+});
 
 export const { addToFav, removeFromFav } = favouriteSlice.actions;
 
@@ -119,6 +153,12 @@ export const { updatePage } = pageUpdateSlice.actions;
 
 export const { getFlippedCards } = flippedCardsSlice.actions;
 
-export const { deviceChanged } = detectDeviceSlice.actions;
+export const { TogglePlayButton } = playButtonClickedSlice.actions;
+
+export const { setTrailers } = TrailersSlice.actions;
+
+export const { warningActions } = modalWarningSlice.actions;
+
+export const { isAdult } = showAdultSlice.actions;
 
 // export default favouriteSlice.reducer;

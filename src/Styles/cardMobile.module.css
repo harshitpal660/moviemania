@@ -1,0 +1,77 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  height: 250px;
+  width: 125px;
+  /* margin: 0px; */
+  /* justify-content: space-around; */
+}
+
+.cardWrapper {
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
+}
+.image_wrapper {
+  overflow: hidden;
+}
+.image_wrapper img {
+  height: 100%;
+  width: 100%;
+}
+
+.fixedHeight {
+  overflow: scroll;
+  height: 20px;
+}
+h5 {
+  margin: 0;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+.fixedHeight:hover {
+  overflow: visible;
+}
+.fixedHeight::-webkit-scrollbar{
+  display: none;
+}
+.buttons {
+  position: relative;
+  top: 85%;
+  transform: translate(0, -100%);
+  display: flex;
+  /* width: 125px; */
+  justify-content: space-around; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-color: rgb(69, 69, 69);
+}
+.icons {
+  height: 15px;
+  width: 15px;
+}
+
+#play {
+  height: 25px;
+  width: 25px;
+}
+
+/* front face of the card */
+.front {
+  position: absolute;
+  height: 188px;
+  width: 125px;
+  backface-visibility: hidden;
+}
+/* back face of the card */
+.back {
+  position: absolute;
+  backface-visibility: hidden;
+  height: 188px;
+  width: 125px;
+  background-color: #97a3b2;
+  transform: rotateY(180deg);
+}
+
+.flipCard {
+  transform: rotateY(180deg);
+}

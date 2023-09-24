@@ -2,7 +2,7 @@ import {
   addToFav,
   removeFromFav,
   getFlippedCards,
-  deviceChanged,
+  TogglePlayButton,
 } from "../Reducers/MovieReducer";
 
 import play from "../Images/play.png";
@@ -16,17 +16,17 @@ import { isMobile } from "react-device-detect";
 
 import toast from "react-hot-toast";
 import styles from "../Styles/card.module.css";
-import { useEffect } from "react";
+import style2 from "../Styles/cardMobile.module.css"
 
 export const Card = (movie) => {
   movie = movie.movie;
   const dispatch = useDispatch();
   const flippedCards = useSelector((state) => state.flippedCards);
   const isFlipped = flippedCards.includes(movie.id);
-  // const isMobile = useSelector((state)=> state.isMobile);
-  console.log(isMobile);
+
   const handleplayTrailer = (id) => {
     console.log(id);
+    dispatch(TogglePlayButton(id));
   };
 
   const handleAddToFav = (movie) => {
@@ -48,48 +48,50 @@ export const Card = (movie) => {
   };
 
   return (
-    <div key={movie.id} className={styles.card}>
-      <div className={styles.fixed_height_div}>
-        <h3>{movie.title}</h3>
+    <div key={movie.id} className={`${isMobile ? style2.card : styles.card}`}>
+      <div className={`${isMobile ? style2.fixedHeight : styles.fixedHeight}`}>
+        {isMobile?<h5>{movie.title}</h5>:<h3>{movie.title}</h3>}
       </div>
       <div
         className={`${styles.cardWrapper} ${isFlipped ? styles.flipCard : ""}`}
       >
-        <div className={`${styles.image_wrapper} ${styles.front}`}>
+        <div className={`${styles.image_wrapper} ${isMobile? style2.front:styles.front}`}>
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
           />
         </div>
-        <div className={styles.back}>back</div>
+        <div className={`${isMobile? style2.back:styles.back}`}>
+          
+        </div>
       </div>
 
-      <div className={`${isMobile ? styles.mobileButtons : styles.buttons}`}>
+      <div className={`${isMobile ? style2.buttons : styles.buttons}`}>
         {movie.addButtonActivated ? (
           <img
             src={favorite2}
             alt="favorite"
-            className={styles.icons}
+            className={`${isMobile? style2.icons:styles.icons}`}
             onClick={() => handleremoveFromFav(movie.id)}
           ></img>
         ) : (
           <img
             src={favorite}
             alt="favorite"
-            className={styles.icons}
+            className={`${isMobile? style2.icons:styles.icons}`}
             onClick={() => handleAddToFav(movie)}
           ></img>
         )}
         <img
           src={play}
           alt="play"
-          id={styles.play}
+          id={`${isMobile? style2.play:styles.play}`}
           onClick={() => handleplayTrailer(movie.id)}
         ></img>
         <img
           src={info}
           alt="info"
-          className={styles.icons}
+          className={`${isMobile? style2.icons:styles.icons}`}
           onClick={() => handleSwap(movie.id)}
         ></img>
       </div>

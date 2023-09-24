@@ -1,9 +1,57 @@
+.trailer{
+  height: fit-content;
+  width: 90%;
+  background-color: blueviolet;
+  /* margin: auto; */
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1000;
+  /* overflow: scroll; */
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
+
+.heading{
+  flex-grow: 2;
+}
+
+.header h3{
+  margin: 0;
+  text-align: center;
+}
+.close{
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.close img{
+  height: 100%;
+  width: 100%;
+}
+
+.video{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+  overflow: scroll;
+}
+.video::-webkit-scrollbar{
+  display: none;
+}
 .movies {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 90px;
 }
 
 

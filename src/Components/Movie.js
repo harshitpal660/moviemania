@@ -2,42 +2,44 @@ import { useEffect } from "react";
 import styles from "../Styles/movie.module.css";
 
 import seemore from "../Images/seemore.png";
+import { isMobile } from "react-device-detect";
 
 
 import { useDispatch } from "react-redux";
 import {useSelector } from "react-redux/es/hooks/useSelector";
 import { moviesURL, searchMoviesURL,fetchData } from "../Utils";
 
-import {loadMovie } from "../Reducers/MovieReducer";
-import { updatePage } from "../Reducers/MovieReducer";
+import {loadMovie, updatePage} from "../Reducers/MovieReducer";
 
-
+import { Trailer } from "./Trailer";
 import { Card } from "./Card";
 function Movie() {
 
   const page = useSelector((state)=> state.pages);
   const movies = useSelector((state)=> state.movies);
-  const fav = useSelector((state)=> state.favourites)
-
-  console.log(movies);
+  const fav = useSelector((state)=> state.favourites);
+  const showAdult = useSelector((state)=>state.showAdult);
+  const modalWarning = useSelector((state)=> state.modalWarning);
   const searchQuery = useSelector((state) => state.searchQuery);
+  const playButtonClicked = useSelector((state)=> state.playButtonClicked);
   const dispatch = useDispatch();
 
+  console.log(playButtonClicked);
   useEffect(() => {
     // console.log("inside useeffect",searchQuery);
     let url = null;
-    if (searchQuery === "") {
-      url = moviesURL(1, false);
-    } else {
-      url = searchMoviesURL(searchQuery, 1, false);
+    if (searchQuery === "" && !modalWarning) {
+      url = moviesURL(1, showAdult);
+    } else if(searchQuery !== "" && !modalWarning) {
+      url = searchMoviesURL(searchQuery, 1, showAdult);
     }
-    const response = fetchData(url);
+    if(!modalWarning){const response = fetchData(url);
     response.then((results)=>{
       //  console.log(results);
         dispatch(loadMovie(results));
-    })
+    })}
 
-  }, [searchQuery,fav]);
+  }, [searchQuery,fav,showAdult]);
 
   
   const loadMoreContent = (page) => {
@@ -45,9 +47,9 @@ function Movie() {
     // console.log(query);
     let url = null;
     if (searchQuery === "") {
-      url = moviesURL(page, false);
+      url = moviesURL(page, showAdult);
     } else {
-      url = searchMoviesURL(searchQuery, page, false);
+      url = searchMoviesURL(searchQuery, page, showAdult);
     }
 
     // console.log(url);
@@ -72,9 +74,10 @@ function Movie() {
  
   return (
     <>
-      <div className={styles.movies}>
+    {playButtonClicked !== 1 && <Trailer/>}
+      <div className={`${styles.movies} ${isMobile ? "mobile":"desktop"}`}>
         {movies.map((movie) => (
-          <Card movie={movie}/>
+          <Card movie={movie} key={movie.id}/>
         ))}
       </div>
       <div id={styles.loadmore} onClick={handlesetPage}>
@@ -87,4 +90,4 @@ function Movie() {
 
 export default Movie;
 
-// <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+

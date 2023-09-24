@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 90px;
+  /* margin-top: 90px; */
 }
 
 .gif{

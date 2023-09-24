@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { isMobile } from "react-device-detect";
 
 import { Card } from "../Components/Card";
 import { Player } from '@lottiefiles/react-lottie-player';
@@ -8,7 +9,7 @@ export const Favourite = () => {
   const movies = Object.values(fav);
   return (
     <>
-      <div className={styles.favourite}>
+      <div className={`${styles.favourite} ${isMobile ? "mobile":"desktop"}`}>
         {movies.length>0 ? (movies.map((movie) => (
           <Card movie={movie} />
         ))):(<Player

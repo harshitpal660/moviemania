@@ -15,7 +15,7 @@ root.render(
     <Provider store={store}>
       <Toaster/>
       <App />
-      {/* <SwapCardAnimation/> */}
+   
     </Provider>
   </Router>
     

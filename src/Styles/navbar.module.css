@@ -37,7 +37,45 @@
     justify-content: center;
     background-color: rgb(233,212,255);
 }
+.Categories{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgb(233,212,255);
+    position: relative;
+    animation: mymove 5s;
+}
+
+@keyframes mymove {
+    from {left: -100%;}
+    to {left: 0%;}
+}
+.options{
+    width: fit-content;
+    background-color: rgb(158, 134, 184);
+    border-radius: 40px;
+    padding: 3px;
+    
+}
+
+.options:hover{
+    transform: scale(1.3);
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+}
+.close{
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.close img{
+  height: 100%;
+  width: 100%;
+}
+
 .Link{
     text-decoration: none;
     margin: 10px;
+    cursor: pointer;
 }
