@@ -7,7 +7,10 @@ import { isMobile } from "react-device-detect";
 
 import { useDispatch } from "react-redux";
 import {useSelector } from "react-redux/es/hooks/useSelector";
-import { moviesURL, searchMoviesURL,fetchData } from "../Utils";
+import { moviesURL, searchMoviesURL,fetchData,getPopularURL,
+  getTopRatedURL,
+  getComingURL,
+  getTheaterURL, } from "../Utils";
 
 import {loadMovie, updatePage} from "../Reducers/MovieReducer";
 
@@ -22,14 +25,39 @@ function Movie() {
   const modalWarning = useSelector((state)=> state.modalWarning);
   const searchQuery = useSelector((state) => state.searchQuery);
   const playButtonClicked = useSelector((state)=> state.playButtonClicked);
+  const cardsOnScreen = useSelector((state)=>state.cardsOnScreen);
   const dispatch = useDispatch();
 
-  console.log(playButtonClicked);
+  console.log(page);
   useEffect(() => {
     console.log("Adult",showAdult);
     let url = null;
     if (searchQuery === "" && !modalWarning) {
-      url = moviesURL(1, showAdult);
+      switch (cardsOnScreen) {
+        case "movies":
+          url = moviesURL(1, showAdult);
+          console.log(url," ",page);
+          break;
+        case "theater":
+          url = getTheaterURL(1);
+          console.log(url," ",page);
+          break;
+        case "popular":
+          url = getPopularURL(1);
+          console.log(url," ",page);
+          break;
+        case "upcoming":
+          url = getComingURL(1);
+          console.log(url," ",page);
+          break;
+        case "top rated":
+          url = getTopRatedURL(1);
+          console.log(url," ",page);
+          break;
+        default:
+          console.log(cardsOnScreen);
+      }
+      
     } else if(searchQuery !== "" && !modalWarning) {
       url = searchMoviesURL(searchQuery, 1, showAdult);
     }
@@ -39,17 +67,39 @@ function Movie() {
         dispatch(loadMovie(results));
     })}
 
-  }, [searchQuery,fav,showAdult]);
+  }, [searchQuery,fav,showAdult,cardsOnScreen]);
 
   
   const loadMoreContent = (page) => {
     // console.log(page);
     // console.log(query);
-    console.log("Adult",showAdult);
 
     let url = null;
     if (searchQuery === "") {
-      url = moviesURL(page, showAdult);
+      switch (cardsOnScreen) {
+        case "movies":
+          url = moviesURL(page, showAdult);
+          console.log(url," ",page);
+          break;
+        case "theater":
+          url = getTheaterURL(page);
+          console.log(url," ",page);
+          break;
+        case "popular":
+          url = getPopularURL(page);
+          console.log(url," ",page);
+          break;
+        case "upcoming":
+          url = getComingURL(page);
+          console.log(url," ",page);
+          break;
+        case "top rated":
+          url = getTopRatedURL(page);
+          console.log(url," ",page);
+          break;
+        default:
+          console.log(cardsOnScreen);
+      }
     } else {
       url = searchMoviesURL(searchQuery, page, showAdult);
     }

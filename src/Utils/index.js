@@ -16,8 +16,8 @@ export const getTrailerURL = (movieId) => {
   return url;
 };
 
-export const getReviewURL = (movieId) => {
-  const url = API.Review(API_KEY, movieId);
+export const getReviewURL = (movieId,page) => {
+  const url = API.Review(API_KEY, movieId,page);
   return url;
 };
 
@@ -26,8 +26,28 @@ export const getDetailsURL = (movieId) => {
   return url;
 };
 
-export const getSimilarURL = (movieId) => {
-  const url = API.Similar(API_KEY, movieId);
+export const getSimilarURL = (movieId,page) => {
+  const url = API.Similar(API_KEY, movieId,page);
+  return url;
+};
+
+export const getPopularURL = (page) => {
+  const url = API.Popular(API_KEY,page);
+  return url;
+};
+
+export const getTopRatedURL = (page) => {
+  const url = API.TopRated(API_KEY,page);
+  return url;
+};
+
+export const getComingURL = (page) => {
+  const url = API.Coming(API_KEY,page);
+  return url;
+};
+
+export const getTheaterURL = (page) => {
+  const url = API.Theater(API_KEY,page);
   return url;
 };
 

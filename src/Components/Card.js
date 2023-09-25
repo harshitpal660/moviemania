@@ -23,10 +23,17 @@ export const Card = (movie) => {
   const dispatch = useDispatch();
   const flippedCards = useSelector((state) => state.flippedCards);
   const isFlipped = flippedCards.includes(movie.id);
+  const trailers = useSelector((state) => state.allTrailers);
 
   const handleplayTrailer = (id) => {
+    
     console.log(id);
     dispatch(TogglePlayButton(id));
+    // if(trailers.length===0){
+    //   toast.success("No Trailer Found", {
+    //     icon: "😔",
+    //   })
+    // }
   };
 
   const handleAddToFav = (movie) => {
@@ -62,7 +69,7 @@ export const Card = (movie) => {
           />
         </div>
         <div className={`${isMobile? style2.back:styles.back}`}>
-          
+          <p className="back">{movie.overview}</p>
         </div>
       </div>
 

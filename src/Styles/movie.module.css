@@ -1,10 +1,10 @@
 .trailer{
   height: fit-content;
-  width: 90%;
-  background-color: blueviolet;
+  width:  90%;
+
   /* margin: auto; */
   position: fixed;
-  top: 90px;
+  top: 120px;
   left: 50%;
   transform: translate(-50%);
   z-index: 1000;
@@ -42,7 +42,9 @@
   flex-direction: row;
   flex-wrap: nowrap;
   height: 100%;
-  overflow: scroll;
+  width: 100%;
+  overflow-y: scroll;
+  /* justify-content: center; */
 }
 .video::-webkit-scrollbar{
   display: none;

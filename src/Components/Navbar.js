@@ -1,13 +1,19 @@
 import styles from "../Styles/navbar.module.css";
 import magnifyingGlass from "../Images/magnifyingGlass.png";
+
+import {
+  fetchData,
+} from "../Utils";
+
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
-import { setSearchQuery } from "../Reducers/MovieReducer";
+import { setSearchQuery, updatePage,loadMovie,updateScreenCards } from "../Reducers/MovieReducer";
 import { Link } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 
 function Navbar() {
   const searchQuery = useSelector((state) => state.searchQuery);
+  
   // console.log(searchQuery[0]);
   const dispatch = useDispatch();
 
@@ -16,10 +22,11 @@ function Navbar() {
     // dispatch(loadMovie(e.target.value))
     console.log(e.target.value);
   };
-  const handleClose=()=>{
-    console.log("close");
-    // dispatch();
-  }
+  const handleOptions = (option) => {
+    dispatch(updatePage(1));
+    dispatch(updateScreenCards(option))
+   
+  };
   return (
     <div className={styles.Navbar}>
       <div className={styles.searchbar}>
@@ -38,22 +45,38 @@ function Navbar() {
         <Link to="/Favourite" className={styles.Link}>
           <div>Favourites</div>
         </Link>
-        {isMobile &&<div className={styles.Link}>Categories</div>}
+        {isMobile && <div className={styles.Link}>Categories</div>}
       </div>
-     {!isMobile ? (<div className={styles.Categories}>
-        {/* <div className={styles.close} onClick={handleClose}>
-          <img src={del}></img>
-        </div> */}
-
-        {/* <label className={styles.switch}>
-          <input type="checkbox"></input>
-          <span className={`${styles.slider} ${styles.round}}`}>18+</span>
-        </label> */}
-        <div className={`${styles.Link} ${styles.options}`}>In Theateres</div>
-        <div className={`${styles.Link} ${styles.options}`}>Popular</div>
-        <div className={`${styles.Link} ${styles.options}`}>Top Rated</div>
-        <div className={`${styles.Link} ${styles.options}`}>Upcoming</div>
-      </div>):(<div></div>)}
+      {!isMobile ? (
+        <div className={styles.Categories}>
+          <div
+            className={`${styles.Link} ${styles.options}`}
+            onClick={() => handleOptions("theater")}
+          >
+            In Theateres
+          </div>
+          <div
+            className={`${styles.Link} ${styles.options}`}
+            onClick={() => handleOptions("popular")}
+          >
+            Popular
+          </div>
+          <div
+            className={`${styles.Link} ${styles.options}`}
+            onClick={() => handleOptions("top rated")}
+          >
+            Top Rated
+          </div>
+          <div
+            className={`${styles.Link} ${styles.options}`}
+            onClick={() => handleOptions("upcoming")}
+          >
+            Upcoming
+          </div>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

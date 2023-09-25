@@ -9,6 +9,7 @@ if(!localStorage.getItem(localStorageKey)){
 const initialState = {
   favourites: JSON.parse(localStorage.getItem(localStorageKey)) || {},
   movies: [],
+  cardsOnScreen: "movies",
   searchQuery: "",
   pages: 1,
   flippedCards: [],
@@ -143,6 +144,16 @@ export const showAdultSlice = createSlice({
   },
 });
 
+export const cardsOnScreenSlice = createSlice({
+  name: "cardsOnScreen",
+  initialState: initialState.cardsOnScreen,
+  reducers : {
+    updateScreenCards: (state,action) =>{
+      return action.payload;
+    }
+  }
+})
+
 export const { addToFav, removeFromFav } = favouriteSlice.actions;
 
 export const { loadMovie } = moviesSlice.actions;
@@ -161,4 +172,5 @@ export const { warningActions } = modalWarningSlice.actions;
 
 export const { isAdult } = showAdultSlice.actions;
 
+export const { updateScreenCards } = cardsOnScreenSlice.actions;
 // export default favouriteSlice.reducer;

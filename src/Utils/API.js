@@ -5,10 +5,12 @@ export const API = {
     Trailer: (apiKey,movieId)=>`${API_ROOT}movie/${movieId}/videos?api_key=${apiKey}`,
     Search: (apiKey,query,page,adult)=> `${API_ROOT}search/movie?api_key=${apiKey}&query=${query}&include_adult=${adult}&language=en-US&page=${page}`,
     Details: (movieId,apiKey)=>`${API_ROOT}movie/${movieId}?api_key=${apiKey}`,
-    Review: (movieId,apiKey)=>`${API_ROOT}movie/${movieId}?api_key=${apiKey}/reviews?language=en-US&page=1`,
-    Similar: (movieId,apiKey)=>`${API_ROOT}movie/${movieId}?api_key=${apiKey}/similar?language=en-US&page=1`,
-    Popular: (apiKey)=> `${API_ROOT}movie/now_playing?api_key=${apiKey}/language=en-US&page=1`,
-    TopRated: (apiKey)=> `${API_ROOT}movie/now_playing?api_key=${apiKey}/language=en-US&page=1`,    
-    coming: (apiKey)=> `${API_ROOT}movie/now_playing?api_key=${apiKey}/language=en-US&page=1`
+    Review: (movieId,apiKey,page)=>`${API_ROOT}movie/${movieId}?api_key=${apiKey}/reviews?language=en-US&page=${page}`,
+    Similar: (movieId,apiKey,page)=>`${API_ROOT}movie/${movieId}?api_key=${apiKey}/similar?language=en-US&page=${page}`,
+    Popular: (apiKey,page)=> `${API_ROOT}movie/popular?api_key=${apiKey}&language=en-US&page=${page}`,
+    TopRated: (apiKey,page)=> `${API_ROOT}movie/top_rated?api_key=${apiKey}&language=en-US&page=${page}`,    
+    Coming: (apiKey,page)=> `${API_ROOT}movie/upcoming?api_key=${apiKey}&language=en-US&page=${page}`,
+    Theater: (apiKey,page)=> `${API_ROOT}movie/now_playing?api_key=${apiKey}&language=en-US&page=${page}`,
+   
 }
 
