@@ -62,4 +62,4 @@ jobs:
           app-name: 'moviemaniaTMDB'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_61E60970DEDA46238E93F6F50FCE339F }}
-          package: .
+          package: release.zip
