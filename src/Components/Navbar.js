@@ -44,6 +44,11 @@ function Navbar() {
         {/* <div className={styles.close} onClick={handleClose}>
           <img src={del}></img>
         </div> */}
+
+        {/* <label className={styles.switch}>
+          <input type="checkbox"></input>
+          <span className={`${styles.slider} ${styles.round}}`}>18+</span>
+        </label> */}
         <div className={`${styles.Link} ${styles.options}`}>In Theateres</div>
         <div className={`${styles.Link} ${styles.options}`}>Popular</div>
         <div className={`${styles.Link} ${styles.options}`}>Top Rated</div>

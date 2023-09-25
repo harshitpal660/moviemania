@@ -26,7 +26,7 @@ function Movie() {
 
   console.log(playButtonClicked);
   useEffect(() => {
-    // console.log("inside useeffect",searchQuery);
+    console.log("Adult",showAdult);
     let url = null;
     if (searchQuery === "" && !modalWarning) {
       url = moviesURL(1, showAdult);
@@ -45,6 +45,8 @@ function Movie() {
   const loadMoreContent = (page) => {
     // console.log(page);
     // console.log(query);
+    console.log("Adult",showAdult);
+
     let url = null;
     if (searchQuery === "") {
       url = moviesURL(page, showAdult);
