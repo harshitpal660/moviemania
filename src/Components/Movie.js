@@ -22,7 +22,8 @@ function Movie() {
   const movies = useSelector((state)=> state.movies);
   const fav = useSelector((state)=> state.favourites);
   const showAdult = useSelector((state)=>state.showAdult);
-  const modalWarning = useSelector((state)=> state.modalWarning);
+  const showModal = useSelector((state)=>state.modalWarning)
+  // = useSelector((state)=> state.modalWarning);
   const searchQuery = useSelector((state) => state.searchQuery);
   const playButtonClicked = useSelector((state)=> state.playButtonClicked);
   const cardsOnScreen = useSelector((state)=>state.cardsOnScreen);
@@ -32,7 +33,7 @@ function Movie() {
   useEffect(() => {
     console.log("Adult",showAdult);
     let url = null;
-    if (searchQuery === "" && !modalWarning) {
+    if (searchQuery === "" ) {
       switch (cardsOnScreen) {
         case "movies":
           url = moviesURL(1, showAdult);
@@ -58,14 +59,14 @@ function Movie() {
           console.log(cardsOnScreen);
       }
       
-    } else if(searchQuery !== "" && !modalWarning) {
+    } else if(searchQuery !== "") {
       url = searchMoviesURL(searchQuery, 1, showAdult);
     }
-    if(!modalWarning){const response = fetchData(url);
+    const response = fetchData(url);
     response.then((results)=>{
       //  console.log(results);
         dispatch(loadMovie(results));
-    })}
+    })
 
   }, [searchQuery,fav,showAdult,cardsOnScreen]);
 

@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { isMobile } from "react-device-detect";
 
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import styles from "../Styles/card.module.css";
 import style2 from "../Styles/cardMobile.module.css"
@@ -23,7 +24,6 @@ export const Card = (movie) => {
   const dispatch = useDispatch();
   const flippedCards = useSelector((state) => state.flippedCards);
   const isFlipped = flippedCards.includes(movie.id);
-  const trailers = useSelector((state) => state.allTrailers);
 
   const handleplayTrailer = (id) => {
     
@@ -62,12 +62,14 @@ export const Card = (movie) => {
       <div
         className={`${styles.cardWrapper} ${isFlipped ? styles.flipCard : ""}`}
       >
+        <Link to="/movieDetail">
         <div className={`${styles.image_wrapper} ${isMobile? style2.front:styles.front}`}>
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
           />
         </div>
+        </Link>
         <div className={`${isMobile? style2.back:styles.back}`}>
           <p className="back">{movie.overview}</p>
         </div>

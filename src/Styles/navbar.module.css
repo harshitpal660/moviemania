@@ -37,13 +37,28 @@
   justify-content: center;
   background-color: rgb(233, 212, 255);
 }
-.Categories {
+.desktopCategories {
   display: flex;
   flex-direction: row;
   justify-content: center;
   background-color: rgb(233, 212, 255);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   position: relative;
   animation: mymove 5s;
+}
+
+.mobileCategory{
+  background-color: rgb(233,212,255);
+  height: 200px;
+  width: 30%;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  animation: mymove 1s;
 }
 
 @keyframes mymove {
@@ -59,6 +74,7 @@
   background-color: rgb(158, 134, 184);
   border-radius: 40px;
   padding: 3px;
+  font-size: 2vw;
 }
 
 .options:hover {

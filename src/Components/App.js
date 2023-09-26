@@ -1,5 +1,6 @@
 import { Home } from "../Pages/Home";
 import { Favourite } from "../Pages/Favourite";
+import { MovieDetail } from "../Pages/MovieDetails";
 import Navbar from "./Navbar";
 import React from "react";
 
@@ -25,8 +26,9 @@ function App() {
       <WarningModal isOpen={showModal} handleType={handleTypeModal} />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/favourite" element={<Favourite />} />
+        <Route path="/" element={!showModal && <Home />} />
+        <Route path="/favourite" element={!showModal && <Favourite />} />
+        <Route path="/movieDetail" element={!showModal && <MovieDetail />} />
       </Routes>
     </div>
   );

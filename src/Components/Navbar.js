@@ -1,19 +1,15 @@
 import styles from "../Styles/navbar.module.css";
 import magnifyingGlass from "../Images/magnifyingGlass.png";
 
-import {
-  fetchData,
-} from "../Utils";
-
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
-import { setSearchQuery, updatePage,loadMovie,updateScreenCards } from "../Reducers/MovieReducer";
+import { setSearchQuery, updatePage,updateScreenCards,toggleShowCategories } from "../Reducers/MovieReducer";
 import { Link } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 
 function Navbar() {
   const searchQuery = useSelector((state) => state.searchQuery);
-  
+  const showCategories = useSelector((state)=> state.showCategories);
   // console.log(searchQuery[0]);
   const dispatch = useDispatch();
 
@@ -27,6 +23,11 @@ function Navbar() {
     dispatch(updateScreenCards(option))
    
   };
+
+  const handleCategory = ()=>{
+    console.log("handleCategory");
+    dispatch(toggleShowCategories(!showCategories))
+  }
   return (
     <div className={styles.Navbar}>
       <div className={styles.searchbar}>
@@ -42,13 +43,13 @@ function Navbar() {
         <Link to="/" className={styles.Link}>
           <div>Home</div>
         </Link>
-        <Link to="/Favourite" className={styles.Link}>
+        <Link to="/favourite" className={styles.Link}>
           <div>Favourites</div>
         </Link>
-        {isMobile && <div className={styles.Link}>Categories</div>}
+        {isMobile && <div className={styles.Link} onClick={handleCategory}>Categories</div>}
       </div>
-      {!isMobile ? (
-        <div className={styles.Categories}>
+      {!isMobile && (
+        <div className={styles.desktopCategories}>
           <div
             className={`${styles.Link} ${styles.options}`}
             onClick={() => handleOptions("theater")}
@@ -74,9 +75,34 @@ function Navbar() {
             Upcoming
           </div>
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) }
+        {showCategories && (<div className={styles.mobileCategory}>
+          <div
+            className={`${styles.Link} ${styles.options}`}
+            onClick={() => handleOptions("theater")}
+          >
+            In Theateres
+          </div>
+          <div
+            className={`${styles.Link} ${styles.options}`}
+            onClick={() => handleOptions("popular")}
+          >
+            Popular
+          </div>
+          <div
+            className={`${styles.Link} ${styles.options}`}
+            onClick={() => handleOptions("top rated")}
+          >
+            Top Rated
+          </div>
+          <div
+            className={`${styles.Link} ${styles.options}`}
+            onClick={() => handleOptions("upcoming")}
+          >
+            Upcoming
+          </div>
+        </div>)}
+      
     </div>
   );
 }

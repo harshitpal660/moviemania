@@ -17,6 +17,7 @@ const initialState = {
   allTrailers: [],
   modalWarning: true,
   showAdult: null,
+  showCategories: false
 };
 
 export const favouriteSlice = createSlice({
@@ -154,6 +155,16 @@ export const cardsOnScreenSlice = createSlice({
   }
 })
 
+export const showCategoriesSlice = createSlice({
+  name: "showCategory",
+  initialState: initialState.showCategories,
+  reducers:{
+    toggleShowCategories: (state,action) =>{
+      return action.payload;
+    }
+  }
+})
+
 export const { addToFav, removeFromFav } = favouriteSlice.actions;
 
 export const { loadMovie } = moviesSlice.actions;
@@ -173,4 +184,6 @@ export const { warningActions } = modalWarningSlice.actions;
 export const { isAdult } = showAdultSlice.actions;
 
 export const { updateScreenCards } = cardsOnScreenSlice.actions;
+
+export const {toggleShowCategories} = showCategoriesSlice.actions;
 // export default favouriteSlice.reducer;

@@ -70,6 +70,11 @@ h5 {
   width: 125px;
   background-color: #97a3b2;
   transform: rotateY(180deg);
+  overflow: scroll;
+}
+
+.back p{
+  font-size: 10px;
 }
 
 .flipCard {
