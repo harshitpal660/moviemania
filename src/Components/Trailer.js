@@ -20,6 +20,7 @@ export const Trailer = () => {
     const response = fetchData(url);
     console.log(response);
     response.then((results) => {
+      results = results.results
       console.log(results);
       if(results.length===0){
      
