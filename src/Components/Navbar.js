@@ -76,7 +76,7 @@ function Navbar() {
           </div>
         </div>
       ) }
-        {showCategories && (<div className={styles.mobileCategory}>
+        {showCategories && (<div className={styles.mobileCategories}>
           <div
             className={`${styles.Link} ${styles.options}`}
             onClick={() => handleOptions("theater")}
