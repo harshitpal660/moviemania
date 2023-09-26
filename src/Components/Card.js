@@ -3,6 +3,7 @@ import {
   removeFromFav,
   getFlippedCards,
   TogglePlayButton,
+  setMovieDetailPage ,
 } from "../Reducers/MovieReducer";
 
 import play from "../Images/play.png";
@@ -19,21 +20,15 @@ import toast from "react-hot-toast";
 import styles from "../Styles/card.module.css";
 import style2 from "../Styles/cardMobile.module.css"
 
-export const Card = (movie) => {
-  movie = movie.movie;
+export const Card = (props) => {
+  const movie = props.movie;
   const dispatch = useDispatch();
   const flippedCards = useSelector((state) => state.flippedCards);
   const isFlipped = flippedCards.includes(movie.id);
 
   const handleplayTrailer = (id) => {
-    
     console.log(id);
     dispatch(TogglePlayButton(id));
-    // if(trailers.length===0){
-    //   toast.success("No Trailer Found", {
-    //     icon: "😔",
-    //   })
-    // }
   };
 
   const handleAddToFav = (movie) => {
@@ -54,6 +49,10 @@ export const Card = (movie) => {
     dispatch(getFlippedCards(id));
   };
 
+  const handlMovieDetailNav = ()=>{
+    // movie.addButtonActivated = false;
+    dispatch(setMovieDetailPage(movie))
+  }
   return (
     <div key={movie.id} className={`${isMobile ? style2.card : styles.card}`}>
       <div className={`${isMobile ? style2.fixedHeight : styles.fixedHeight}`}>
@@ -62,7 +61,7 @@ export const Card = (movie) => {
       <div
         className={`${styles.cardWrapper} ${isFlipped ? styles.flipCard : ""}`}
       >
-        <Link to="/movieDetail">
+        <Link to={`/movieDetail/${movie.id}`} onClick={handlMovieDetailNav}>
         <div className={`${styles.image_wrapper} ${isMobile? style2.front:styles.front}`}>
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

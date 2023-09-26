@@ -49,6 +49,41 @@
 .video::-webkit-scrollbar{
   display: none;
 }
+
+.mobileTotalResults{
+  position: fixed;
+  top: 65px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  z-index: 100000;
+  color: aliceblue;
+  background-color: rgb(32,33,36);
+}
+.mobileTotalResults h4,p{
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.desktopTotalResults{
+  position: fixed;
+  top: 100px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  z-index: 100000;
+  color: aliceblue;
+  background-color: rgb(32,33,36);
+}
+
+.desktopTotalResults h3,p{
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Poppins', sans-serif;
+}
 .movies {
   display: flex;
   flex-direction: row;

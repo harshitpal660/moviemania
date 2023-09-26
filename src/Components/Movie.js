@@ -4,73 +4,80 @@ import styles from "../Styles/movie.module.css";
 import seemore from "../Images/seemore.png";
 import { isMobile } from "react-device-detect";
 
-
+import { Trailer } from "./Trailer";
 import { useDispatch } from "react-redux";
-import {useSelector } from "react-redux/es/hooks/useSelector";
-import { moviesURL, searchMoviesURL,fetchData,getPopularURL,
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import {
+  moviesURL,
+  searchMoviesURL,
+  fetchData,
+  getPopularURL,
   getTopRatedURL,
   getComingURL,
-  getTheaterURL, } from "../Utils";
+  getTheaterURL,
+} from "../Utils";
+import { setTotalPages, setTotalResults } from "../Reducers/ResultCountReducer";
 
-import {loadMovie, updatePage} from "../Reducers/MovieReducer";
+import { loadMovie, updatePage } from "../Reducers/MovieReducer";
 
-import { Trailer } from "./Trailer";
 import { Card } from "./Card";
 function Movie() {
-
-  const page = useSelector((state)=> state.pages);
-  const movies = useSelector((state)=> state.movies);
-  const fav = useSelector((state)=> state.favourites);
-  const showAdult = useSelector((state)=>state.showAdult);
-  const showModal = useSelector((state)=>state.modalWarning)
+  const page = useSelector((state) => state.pages);
+  const movies = useSelector((state) => state.movies);
+  const fav = useSelector((state) => state.favourites);
+  const showAdult = useSelector((state) => state.showAdult);
+  const showModal = useSelector((state) => state.modalWarning);
   // = useSelector((state)=> state.modalWarning);
   const searchQuery = useSelector((state) => state.searchQuery);
-  const playButtonClicked = useSelector((state)=> state.playButtonClicked);
-  const cardsOnScreen = useSelector((state)=>state.cardsOnScreen);
+  const playButtonClicked = useSelector((state) => state.playButtonClicked);
+  const cardsOnScreen = useSelector((state) => state.cardsOnScreen);
+
+  const totalResults = useSelector((state) => state.totalResults);
+  const totalPages = useSelector((state) => state.totalPages);
   const dispatch = useDispatch();
 
   console.log(page);
   useEffect(() => {
-    console.log("Adult",showAdult);
+    console.log("Adult", showAdult);
     let url = null;
-    if (searchQuery === "" ) {
+    if (searchQuery === "") {
       switch (cardsOnScreen) {
         case "movies":
           url = moviesURL(1, showAdult);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         case "theater":
           url = getTheaterURL(1);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         case "popular":
           url = getPopularURL(1);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         case "upcoming":
           url = getComingURL(1);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         case "top rated":
           url = getTopRatedURL(1);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         default:
           console.log(cardsOnScreen);
       }
-      
-    } else if(searchQuery !== "") {
+    } else if (searchQuery !== "") {
       url = searchMoviesURL(searchQuery, 1, showAdult);
     }
     const response = fetchData(url);
-    response.then((results)=>{
+    // console.log(response);
+    response.then((results) => {
       //  console.log(results);
-        dispatch(loadMovie(results));
-    })
+      dispatch(loadMovie(results.results));
+      dispatch(setTotalResults(results.total_results));
+      dispatch(setTotalPages(results.total_pages))
+    });
+  }, [searchQuery, fav, showAdult, cardsOnScreen]);
 
-  }, [searchQuery,fav,showAdult,cardsOnScreen]);
-
-  
   const loadMoreContent = (page) => {
     // console.log(page);
     // console.log(query);
@@ -80,23 +87,23 @@ function Movie() {
       switch (cardsOnScreen) {
         case "movies":
           url = moviesURL(page, showAdult);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         case "theater":
           url = getTheaterURL(page);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         case "popular":
           url = getPopularURL(page);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         case "upcoming":
           url = getComingURL(page);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         case "top rated":
           url = getTopRatedURL(page);
-          console.log(url," ",page);
+          // console.log(url, " ", page);
           break;
         default:
           console.log(cardsOnScreen);
@@ -107,30 +114,37 @@ function Movie() {
 
     // console.log(url);
     const response = fetchData(url);
-
-    response.then((results)=>{
-      //  console.log(movies.concat(results));
-        // setMovies(movies.concat(results));
-        dispatch(loadMovie(movies.concat(results)));
-        // console.log(movies);
-    })
-
+    // console.log(response);
+    response.then((results) => {
+      //  console.log(results);
+      // setMovies(movies.concat(results));
+      dispatch(loadMovie(movies.concat(results.results)));
+      dispatch(setTotalResults(results.total_results));
+      dispatch(setTotalPages(results.total_pages))
+      // console.log(movies);
+    });
   };
 
   const handlesetPage = () => {
     // console.log(page);
     loadMoreContent(page + 1);
     // setPage(page + 1);
-    dispatch(updatePage(page+1));
+    dispatch(updatePage(page + 1));
   };
 
- 
   return (
     <>
-    {playButtonClicked !== 1 && <Trailer/>}
-      <div className={`${styles.movies} ${isMobile ? "mobile":"desktop"}`}>
+      {playButtonClicked !== 1 && <Trailer />}
+      <div className={`${isMobile ? styles.mobileTotalResults : styles.desktopTotalResults}`}>
+          {isMobile ? <h4>Total Result : {totalResults}</h4>:<h3>Total Result : {totalResults}</h3>}
+          <p className={`${isMobile ? styles.mobileTotalPages : styles.desktopTotalPages}`}>
+            {page}/{totalPages}
+          </p>
+        </div>
+      <div className={`${styles.movies} ${isMobile ? "mobile" : "desktop"}`}>
+        
         {movies.map((movie) => (
-          <Card movie={movie} key={movie.id}/>
+          <Card movie={movie} key={movie.id} />
         ))}
       </div>
       <div id={styles.loadmore} onClick={handlesetPage}>
@@ -142,5 +156,3 @@ function Movie() {
 }
 
 export default Movie;
-
-

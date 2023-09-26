@@ -4,6 +4,7 @@
   cursor: pointer;
   height: 250px;
   width: 125px;
+  
   /* margin: 0px; */
   /* justify-content: space-around; */
 }
@@ -44,6 +45,7 @@ h5 {
   justify-content: space-around; /* Center horizontally */
   align-items: center; /* Center vertically */
   background-color: rgb(69, 69, 69);
+  border-radius: 10px;
 }
 .icons {
   height: 15px;
@@ -61,6 +63,7 @@ h5 {
   height: 188px;
   width: 125px;
   backface-visibility: hidden;
+  border-radius: 10px;
 }
 /* back face of the card */
 .back {
@@ -68,13 +71,17 @@ h5 {
   backface-visibility: hidden;
   height: 188px;
   width: 125px;
+  border-radius: 10px;
   background-color: #97a3b2;
   transform: rotateY(180deg);
   overflow: scroll;
 }
-
+.back::-webkit-scrollbar{
+  display: none;
+}
 .back p{
   font-size: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .flipCard {

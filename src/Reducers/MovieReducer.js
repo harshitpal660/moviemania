@@ -17,7 +17,8 @@ const initialState = {
   allTrailers: [],
   modalWarning: true,
   showAdult: null,
-  showCategories: false
+  showCategories: false,
+  movieDetailPage: {},
 };
 
 export const favouriteSlice = createSlice({
@@ -105,7 +106,7 @@ export const flippedCardsSlice = createSlice({
 
 export const playButtonClickedSlice = createSlice({
   name: "pageUpdate",
-  initialState: initialState.pages,
+  initialState: initialState.playButtonClicked,
   reducers: {
     TogglePlayButton: (state, action) => {
       
@@ -165,6 +166,15 @@ export const showCategoriesSlice = createSlice({
   }
 })
 
+export const movieDetailPageSlice = createSlice({
+  name: "movieDetailPage",
+  initialState: initialState.movieDetailPage,
+  reducers:{
+    setMovieDetailPage: (state,action) =>{
+      return action.payload;
+    }
+  }
+})
 export const { addToFav, removeFromFav } = favouriteSlice.actions;
 
 export const { loadMovie } = moviesSlice.actions;
@@ -186,4 +196,6 @@ export const { isAdult } = showAdultSlice.actions;
 export const { updateScreenCards } = cardsOnScreenSlice.actions;
 
 export const {toggleShowCategories} = showCategoriesSlice.actions;
+
+export const {setMovieDetailPage} = movieDetailPageSlice.actions;
 // export default favouriteSlice.reducer;

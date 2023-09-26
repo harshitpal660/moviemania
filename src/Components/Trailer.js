@@ -2,7 +2,6 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import styles from "../Styles/movie.module.css";
 import del from "../Images/delete.png";
 import { useEffect } from "react";
-// import { useEffect } from "react";
 import { getTrailerURL, fetchData } from "../Utils";
 import { useDispatch } from "react-redux";
 import { setTrailers, TogglePlayButton } from "../Reducers/MovieReducer";
@@ -11,6 +10,7 @@ import toast from "react-hot-toast";
 export const Trailer = () => {
   const playButtonClicked = useSelector((state) => state.playButtonClicked);
   const trailers = useSelector((state) => state.allTrailers);
+
   const dispatch = useDispatch();
 
   console.log(trailers);
@@ -40,7 +40,7 @@ export const Trailer = () => {
   };
   return (
     <div className={styles.trailer}>
-      {trailers.length > 0 && (
+      {(trailers.length > 0)&& (
         <div className={styles.header}>
           <div className={styles.heading}>
             <h3></h3>

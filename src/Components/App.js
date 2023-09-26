@@ -13,6 +13,7 @@ function App() {
   const dispatch = useDispatch();
   const showAdult = useSelector((state)=>state.showAdult)
   const showModal = useSelector((state)=>state.modalWarning)
+  const MovieDetailPage = useSelector((state)=> state.MovieDetailPage);
 
   console.log("showadult",showAdult);
 
@@ -28,7 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={!showModal && <Home />} />
         <Route path="/favourite" element={!showModal && <Favourite />} />
-        <Route path="/movieDetail" element={!showModal && <MovieDetail />} />
+        <Route path="/movieDetail/:id" element={!showModal && <MovieDetail />} />
       </Routes>
     </div>
   );

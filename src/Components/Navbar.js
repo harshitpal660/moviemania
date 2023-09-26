@@ -3,13 +3,14 @@ import magnifyingGlass from "../Images/magnifyingGlass.png";
 
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
-import { setSearchQuery, updatePage,updateScreenCards,toggleShowCategories } from "../Reducers/MovieReducer";
+import { setSearchQuery, updatePage,updateScreenCards,toggleShowCategories} from "../Reducers/MovieReducer";
 import { Link } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 
 function Navbar() {
   const searchQuery = useSelector((state) => state.searchQuery);
   const showCategories = useSelector((state)=> state.showCategories);
+  
   // console.log(searchQuery[0]);
   const dispatch = useDispatch();
 
