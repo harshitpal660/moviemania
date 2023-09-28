@@ -58,7 +58,7 @@ export const moviesSlice = createSlice({
                 itemClone.addButtonActivated = true;
                 item = itemClone;
                 newArray.push(item)
-                console.log(item);
+                // console.log(item);
             }else{
                 const itemClone = {...item}
                 itemClone.addButtonActivated = false;

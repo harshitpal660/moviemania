@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  height: 500px;
-  width: 250px;
+  height: 400px;
+  width: 200px;
   margin: 0px;
   /* justify-content: space-around; */
 }
@@ -14,6 +14,7 @@
 }
 .image_wrapper {
   overflow: hidden;
+  
 }
 .image_wrapper img {
   height: 100%;
@@ -22,10 +23,12 @@
 
 .buttons {
   position: relative; 
-  top:85%;
+  top:77.5%;
   transform: translate(0,-100%);
   display: flex;
-  border-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  /* width: 200px; */
   justify-content: space-around; /* Center horizontally */
   align-items: center; /* Center vertically */
   /* Take up the full height of the card */
@@ -38,47 +41,71 @@
 }
 
 .icons {
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
 }
 
 #play {
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
 }
 .fixedHeight {
+  background-color: rgb(225,225,226);
   overflow: scroll;
-  height: 30px;
+  height: 70px;
+  width: 200px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .fixedHeight::-webkit-scrollbar{
   display: none;
 }
-h3{
+
+.voteAverage{
+  display: flex;
+  /* flex-direction: row; */
+  /* flex-wrap: nowrap; */
+  justify-content: space-around;
+  align-items: center;
+}
+
+.release{
+  background-color: rgb(32,33,36);
+  color:white;
+  height: 2em;
+  width: 2em;
+  border-radius:50%;
+}
+.fixedHeight h4{
   margin: 0;
   margin-top: 5px;
+  text-align: center;
   white-space: nowrap;
 }
-.fixedHeight:hover{
-  overflow: visible;
+
+.fixedHeight p{
+  font-size: 12px;
+  text-align: center;
 }
+
 /* front face of the card */
 .front {
   position: absolute;
-  height: 375px;
-  width: 250px;
+  height: 275px;
+  width: 200px;
   backface-visibility: hidden;
-  border-radius: 20px;
+  
 }
 /* back face of the card */
 .back {
   position: absolute;
   backface-visibility: hidden;
-  height: 375px;
-  width: 250px;
+  height: 275px;
+  width: 200px;
   background-color: #6294d2;
   transform: rotateY(180deg);
   overflow: scroll;
-  border-radius: 20px;
+
 }
 .back::-webkit-scrollbar{
   display: none;

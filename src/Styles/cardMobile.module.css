@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  height: 250px;
-  width: 125px;
+  height: 200px;
+  width: 100px;
   
   /* margin: 0px; */
   /* justify-content: space-around; */
@@ -15,6 +15,7 @@
 }
 .image_wrapper {
   overflow: hidden;
+
 }
 .image_wrapper img {
   height: 100%;
@@ -22,57 +23,84 @@
 }
 
 .fixedHeight {
+  background-color: rgb(225,225,226);
   overflow: scroll;
-  height: 20px;
+  height: 35px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* width: 100px; */
 }
-h5 {
+
+.voteAverage{
+  display: flex;
+  /* flex-direction: row; */
+  /* flex-wrap: nowrap; */
+  justify-content: space-around;
+  align-items: center;
+}
+
+.release{
+  background-color: rgb(32,33,36);
+  color:white;
+  height: 1em;
+  width: 1em;
+  border-radius:50%;
+}
+.fixedHeight h6{
   margin: 0;
-  margin-top: 5px;
+  margin-top: 3px;
+  text-align: center;
   white-space: nowrap;
 }
-.fixedHeight:hover {
-  overflow: visible;
+
+.fixedHeight p{
+  font-size: 6px;
+  text-align: center;
 }
+
+/* .fixedHeight:hover {
+  overflow: visible;
+} */
 .fixedHeight::-webkit-scrollbar{
   display: none;
 }
 .buttons {
   position: relative;
-  top: 85%;
+  top: 76.5%;
   transform: translate(0, -100%);
   display: flex;
-  /* width: 125px; */
   justify-content: space-around; /* Center horizontally */
   align-items: center; /* Center vertically */
   background-color: rgb(69, 69, 69);
-  border-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .icons {
-  height: 15px;
-  width: 15px;
+  height: 10px;
+  width: 10px;
 }
 
 #play {
-  height: 25px;
-  width: 25px;
+  height: 17px;
+  width: 17px;
 }
 
 /* front face of the card */
 .front {
   position: absolute;
-  height: 188px;
-  width: 125px;
+  height: 137px;
+  width: 100px;
   backface-visibility: hidden;
-  border-radius: 10px;
+ 
 }
 /* back face of the card */
 .back {
   position: absolute;
   backface-visibility: hidden;
-  height: 188px;
-  width: 125px;
-  border-radius: 10px;
-  background-color: #97a3b2;
+  height: 137px;
+  width: 100px;
+
+  background-color: #6294d2;
   transform: rotateY(180deg);
   overflow: scroll;
 }

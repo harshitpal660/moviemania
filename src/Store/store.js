@@ -1,6 +1,7 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
 import { favouriteSlice, moviesSlice, searchQuerySlice, pageUpdateSlice,flippedCardsSlice, playButtonClickedSlice, TrailersSlice, modalWarningSlice,showAdultSlice,cardsOnScreenSlice,showCategoriesSlice,movieDetailPageSlice} from "../Reducers/MovieReducer";
 import { totalPageSlice,totalResultSlice } from "../Reducers/ResultCountReducer";
+import { similarSlice,detailSlice,reviewSlice } from "../Reducers/CardDetailsReducer";
 const rootReducer = combineReducers({
     favourites: favouriteSlice.reducer,
     movies: moviesSlice.reducer,
@@ -16,6 +17,9 @@ const rootReducer = combineReducers({
     movieDetailPage: movieDetailPageSlice.reducer,
     totalResults: totalResultSlice.reducer,
     totalPages:totalPageSlice.reducer,
+    similar:similarSlice.reducer,
+    review:reviewSlice.reducer,
+    details:detailSlice.reducer,
 });
 
 export const store = configureStore({
