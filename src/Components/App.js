@@ -13,7 +13,7 @@ function App() {
   const dispatch = useDispatch();
   const showAdult = useSelector((state)=>state.showAdult)
   const showModal = useSelector((state)=>state.modalWarning)
-  const MovieDetailPage = useSelector((state)=> state.MovieDetailPage);
+  // const MovieDetailPage = useSelector((state)=> state.MovieDetailPage);
 
   console.log("showadult",showAdult);
 
